@@ -10,6 +10,7 @@ import RecipeDetailPage from './pages/RecipeDetailPage'
 import FavoritesPage from './pages/FavoritesPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import AdminPage from './pages/AdminPage'
 
 function App() {
 	return (
@@ -25,6 +26,11 @@ function App() {
 							<Route path="/favorites" element={
 								<ProtectedRoute>
 									<FavoritesPage />
+								</ProtectedRoute>
+							} />
+							<Route path="/admin" element={
+								<ProtectedRoute>
+									<AdminPage />
 								</ProtectedRoute>
 							} />
 							<Route path="/login" element={<LoginPage />} />

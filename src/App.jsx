@@ -1,37 +1,48 @@
-import { useRecipes } from './hooks/useRecipes'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
+import HomePage from './pages/HomePage'
+import RecipesPage from './pages/RecipesPage'
+import RecipeDetailPage from './pages/RecipeDetailPage'
+import FavoritesPage from './pages/FavoritesPage'
 
 function App() {
-	const { recipes, loading, error } = useRecipes()
-
 	return (
-		<div className="min-h-screen bg-gray-100 p-8">
-			<div className="max-w-4xl mx-auto">
-				<h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
-					Mi App de Recetas
-				</h1>
+		<BrowserRouter>
+			<div className="min-h-screen flex flex-col">
+				<Navbar />
 				
-				{loading && (
-					<div className="text-center text-gray-600">
-						Cargando recetas...
-					</div>
-				)}
+				<main className="flex-1">
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/recipes" element={<RecipesPage />} />
+						<Route path="/recipe/:id" element={<RecipeDetailPage />} />
+						<Route path="/favorites" element={<FavoritesPage />} />
+					</Routes>
+				</main>
 				
-				{error && (
-					<div className="text-center text-red-600 bg-red-100 p-4 rounded-lg">
-						{error}
-					</div>
-				)}
-				
-				{!loading && !error && (
-					<div className="text-center text-gray-600">
-						{recipes.length === 0 
-							? 'No hay recetas disponibles. Configura Firebase para ver las recetas.'
-							: `Se encontraron ${recipes.length} recetas`
-						}
-					</div>
-				)}
+				<Footer />
 			</div>
-		</div>
+			
+			<Toaster 
+				position="top-right"
+				toastOptions={{
+					duration: 4000,
+					style: {
+						background: '#363636',
+						color: '#fff',
+					},
+					success: {
+						duration: 3000,
+						theme: {
+							primary: '#f97316',
+							secondary: '#fff',
+						},
+					},
+				}}
+			/>
+		</BrowserRouter>
 	)
 }
 

@@ -26,9 +26,17 @@ const Navbar = () => {
 					{/* Información del usuario */}
 					{currentUser ? (
 						<div className="flex items-center space-x-3">
-							<span className="text-sm text-gray-600">
-								👤 {currentUser.email}
-							</span>
+							{currentUser.photoURL ? (
+								<img 
+									src={currentUser.photoURL} 
+									alt="Avatar" 
+									className="w-8 h-8 rounded-full"
+								/>
+							) : (
+								<span className="text-sm text-gray-600">
+									👤 {currentUser.displayName || currentUser.email}
+								</span>
+							)}
 							<button 
 								onClick={handleSignOut}
 								className="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 transition-colors"

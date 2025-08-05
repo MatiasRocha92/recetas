@@ -8,7 +8,7 @@ import StepByStep from '../components/StepByStep'
 const RecipeDetailPage = () => {
 	const { id } = useParams()
 	const { recipe, loading, error } = useRecipe(id)
-	const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites()
+	const { toggleFavorite, isFavorite } = useFavorites()
 	const { currentUser } = useAuth()
 
 	const handleFavoriteToggle = async () => {
@@ -18,11 +18,7 @@ const RecipeDetailPage = () => {
 			return
 		}
 
-		if (isFavorite(id)) {
-			await removeFromFavorites(id)
-		} else {
-			await addToFavorites(recipe)
-		}
+		await toggleFavorite(id)
 	}
 
 	if (loading) {

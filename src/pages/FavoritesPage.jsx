@@ -6,12 +6,12 @@ import { motion } from 'framer-motion'
 
 const FavoritesPage = () => {
 	const { recipes, loading: recipesLoading, error: recipesError } = useRecipes()
-	const { favorites, loading: favoritesLoading, removeFromFavorites } = useFavorites()
+	const { favorites, loading: favoritesLoading } = useFavorites()
 	const { currentUser } = useAuth()
 
 	// Filtrar recetas que están en favoritos
 	const favoriteRecipes = recipes.filter(recipe => 
-		favorites.some(fav => fav.recipeId === recipe.id)
+		favorites.includes(recipe.id)
 	)
 
 	const loading = recipesLoading || favoritesLoading

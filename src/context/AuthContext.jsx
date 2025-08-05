@@ -24,7 +24,11 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		// Suscribirse a los cambios de autenticación
-		const unsubscribe = onAuthStateChanged(auth, (user) => {
+		const unsubscribe = onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				// Verificar si el usuario tiene documento en Firestore
+				await ensureUserDocument(user)
+			}
 			setCurrentUser(user)
 			setLoading(false)
 		})
@@ -32,6 +36,28 @@ export const AuthProvider = ({ children }) => {
 		// Cleanup: desuscribirse cuando el componente se desmonte
 		return unsubscribe
 	}, [])
+
+	// Función para asegurar que el usuario tenga documento en Firestore
+	const ensureUserDocument = async (user) => {
+		try {
+			const userDocRef = doc(db, 'users', user.uid)
+			const userDoc = await getDoc(userDocRef)
+			
+			if (!userDoc.exists()) {
+				// Crear documento del usuario si no existe
+				await setDoc(userDocRef, {
+					email: user.email,
+					displayName: user.displayName || user.email?.split('@')[0] || 'Usuario',
+					photoURL: user.photoURL || null,
+					favorites: [],
+					createdAt: new Date().toISOString()
+				})
+				console.log('Documento de usuario creado:', user.uid)
+			}
+		} catch (error) {
+			console.error('Error al verificar/crear documento de usuario:', error)
+		}
+	}
 
 	// Función para registrar usuario
 	const signUp = async (email, password) => {

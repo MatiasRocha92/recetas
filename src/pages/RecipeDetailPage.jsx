@@ -1,11 +1,29 @@
 import { useParams, Link } from 'react-router-dom'
 import { useRecipe } from '../hooks/useRecipe'
+import { useFavorites } from '../hooks/useFavorites'
+import { useAuth } from '../context/AuthContext'
 import { motion } from 'framer-motion'
 import StepByStep from '../components/StepByStep'
 
 const RecipeDetailPage = () => {
 	const { id } = useParams()
 	const { recipe, loading, error } = useRecipe(id)
+	const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites()
+	const { currentUser } = useAuth()
+
+	const handleFavoriteToggle = async () => {
+		if (!currentUser) {
+			// Redirigir a login si no está autenticado
+			window.location.href = '/login'
+			return
+		}
+
+		if (isFavorite(id)) {
+			await removeFromFavorites(id)
+		} else {
+			await addToFavorites(recipe)
+		}
+	}
 
 	if (loading) {
 		return (
@@ -169,8 +187,15 @@ const RecipeDetailPage = () => {
 					transition={{ duration: 0.6, delay: 0.7 }}
 					className="mt-8 text-center"
 				>
-					<button className="bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors mr-4">
-						❤️ Agregar a Favoritos
+					<button 
+						onClick={handleFavoriteToggle}
+						className={`px-8 py-3 rounded-lg font-semibold transition-colors mr-4 ${
+							isFavorite(id) 
+								? 'bg-red-500 text-white hover:bg-red-600' 
+								: 'bg-orange-500 text-white hover:bg-orange-600'
+						}`}
+					>
+						{isFavorite(id) ? '❤️ Quitar de Favoritos' : '🤍 Agregar a Favoritos'}
 					</button>
 					<button className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
 						📱 Compartir Receta

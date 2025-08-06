@@ -11,6 +11,7 @@ import FavoritesPage from './pages/FavoritesPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import AdminPage from './pages/AdminPage'
+import CreateRecipePage from './pages/CreateRecipePage'
 
 function App() {
 	return (
@@ -31,6 +32,11 @@ function App() {
 							<Route path="/admin" element={
 								<ProtectedRoute>
 									<AdminPage />
+								</ProtectedRoute>
+							} />
+							<Route path="/create-recipe" element={
+								<ProtectedRoute>
+									<CreateRecipePage />
 								</ProtectedRoute>
 							} />
 							<Route path="/login" element={<LoginPage />} />

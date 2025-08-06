@@ -3,6 +3,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../services/firebase'
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
+import { useAuth } from '../context/AuthContext'
 
 // Datos de recetas argentinas
 const recipesData = [
@@ -553,6 +554,12 @@ const recipesData = [
 
 const SeedDatabaseButton = () => {
 	const [loading, setLoading] = useState(false)
+	const { isAdmin } = useAuth()
+
+	// Solo mostrar el botón si el usuario es administrador
+	if (!isAdmin) {
+		return null
+	}
 
 	const handleSeedDatabase = async () => {
 		if (!window.confirm('¿Estás seguro de que quieres poblar la base de datos con recetas argentinas? Esta acción no se puede deshacer.')) {

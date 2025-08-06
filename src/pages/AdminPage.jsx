@@ -4,11 +4,15 @@ import { motion } from 'framer-motion'
 import SeedDatabaseButton from '../components/SeedDatabaseButton'
 
 const AdminPage = () => {
-	const { currentUser } = useAuth()
+	const { currentUser, isAdmin } = useAuth()
 
-	// Solo permitir acceso a usuarios autenticados
+	// Solo permitir acceso a usuarios autenticados y administradores
 	if (!currentUser) {
 		return <Navigate to="/login" replace />
+	}
+
+	if (!isAdmin) {
+		return <Navigate to="/" replace />
 	}
 
 	return (

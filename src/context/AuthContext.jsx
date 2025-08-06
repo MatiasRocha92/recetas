@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { doc, setDoc, getDoc } from 'firebase/firestore'
+import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore'
 import { auth, db } from '../services/firebase'
 import LoadingSpinner from '../components/LoadingSpinner'
 import toast from 'react-hot-toast'
@@ -17,6 +17,12 @@ export const useAuth = () => {
 	return context
 }
 
+// Lista de UIDs de administradores
+const ADMIN_UIDS = [
+	'zzp3JQtgqMMoT0GzGlMOFp2zH1S2', // Tu UID (con l minúscula)
+	// Agregar más UIDs de administradores aquí si es necesario
+]
+
 // Componente proveedor del contexto
 export const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null)
@@ -26,8 +32,22 @@ export const AuthProvider = ({ children }) => {
 		// Suscribirse a los cambios de autenticación
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
 			if (user) {
-				// Verificar si el usuario tiene documento en Firestore
-				await ensureUserDocument(user)
+				// Asegurar documento de usuario para favoritos
+				try {
+					await ensureUserDocument(user)
+				} catch (error) {
+					console.error('Error al crear documento de usuario:', error)
+				}
+				
+				// Notificar si es administrador
+				const adminStatus = isAdmin(user)
+				
+				if (adminStatus) {
+					toast.success('👑 ¡Bienvenido Administrador!', {
+						duration: 2000,
+						icon: '👑'
+					})
+				}
 			}
 			setCurrentUser(user)
 			setLoading(false)
@@ -37,7 +57,13 @@ export const AuthProvider = ({ children }) => {
 		return unsubscribe
 	}, [])
 
-	// Función para asegurar que el usuario tenga documento en Firestore
+	// Función para verificar si el usuario es administrador
+	const isAdmin = (user) => {
+		if (!user || !user.uid) return false
+		return ADMIN_UIDS.includes(user.uid)
+	}
+
+	// Función para asegurar que el usuario tenga documento en Firestore (solo para favoritos)
 	const ensureUserDocument = async (user) => {
 		try {
 			const userDocRef = doc(db, 'users', user.uid)
@@ -52,7 +78,6 @@ export const AuthProvider = ({ children }) => {
 					favorites: [],
 					createdAt: new Date().toISOString()
 				})
-				console.log('Documento de usuario creado:', user.uid)
 			}
 		} catch (error) {
 			console.error('Error al verificar/crear documento de usuario:', error)
@@ -183,7 +208,8 @@ export const AuthProvider = ({ children }) => {
 		signUp,
 		signIn,
 		signInWithGoogle,
-		signOut: signOutUser
+		signOut: signOutUser,
+		isAdmin: currentUser ? isAdmin(currentUser) : false
 	}
 
 	// Mostrar spinner mientras se verifica la autenticación

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useFavorites } from '../hooks/useFavorites'
 import { useAuth } from '../context/AuthContext'
-import RecipeRating from './RecipeRating'
 
 const RecipeCard = ({ recipe }) => {
 	const { isFavorite, toggleFavorite } = useFavorites()
@@ -80,7 +79,7 @@ const RecipeCard = ({ recipe }) => {
 					</p>
 					
 					{/* Metadatos */}
-					<div className="flex items-center justify-between text-sm text-gray-500 mb-3">
+					<div className="flex items-center justify-between text-sm text-gray-500">
 						<span className="flex items-center">
 							<span className="mr-1">⏱️</span>
 							{recipe.cookingTime || 0} min
@@ -90,11 +89,6 @@ const RecipeCard = ({ recipe }) => {
 							{recipe.servings || 0} porciones
 						</span>
 					</div>
-
-					{/* Rating y autor */}
-					{recipe.isUserRecipe && (
-						<RecipeRating recipe={recipe} />
-					)}
 				</div>
 			</Link>
 		</motion.div>

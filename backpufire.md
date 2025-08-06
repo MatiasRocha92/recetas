@@ -15,3 +15,26 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+Rules:
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Reglas para la colección 'users'
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Reglas para la colección 'recipes' (si la tienes)
+    match /recipes/{recipeId} {
+      allow read: if true; // Cualquiera puede leer las recetas
+      allow write: if request.auth != null; // Solo usuarios autenticados pueden escribir
+    }
+    
+    // Regla por defecto - denegar todo lo demás
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

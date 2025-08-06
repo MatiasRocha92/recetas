@@ -4,7 +4,6 @@ import { useFavorites } from '../hooks/useFavorites'
 import { useAuth } from '../context/AuthContext'
 import { motion } from 'framer-motion'
 import StepByStep from '../components/StepByStep'
-import RecipeRating from '../components/RecipeRating'
 
 const RecipeDetailPage = () => {
 	const { id } = useParams()
@@ -177,36 +176,26 @@ const RecipeDetailPage = () => {
 					</motion.div>
 				</div>
 
-				{/* Rating y Botones de Acción */}
+				{/* Botones de Acción */}
 				<motion.div 
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6, delay: 0.7 }}
-					className="mt-8"
+					className="mt-8 text-center"
 				>
-					{/* Rating para recetas de usuarios */}
-					{recipe.isUserRecipe && (
-						<div className="text-center mb-6">
-							<RecipeRating recipe={recipe} />
-						</div>
-					)}
-					
-					{/* Botones de acción */}
-					<div className="text-center">
-						<button 
-							onClick={handleFavoriteToggle}
-							className={`px-8 py-3 rounded-lg font-semibold transition-colors mr-4 ${
-								isFavorite(id) 
-									? 'bg-red-500 text-white hover:bg-red-600' 
-									: 'bg-orange-500 text-white hover:bg-orange-600'
-							}`}
-						>
-							{isFavorite(id) ? '❤️ Quitar de Favoritos' : '🤍 Agregar a Favoritos'}
-						</button>
-						<button className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
-							📱 Compartir Receta
-						</button>
-					</div>
+					<button 
+						onClick={handleFavoriteToggle}
+						className={`px-8 py-3 rounded-lg font-semibold transition-colors mr-4 ${
+							isFavorite(id) 
+								? 'bg-red-500 text-white hover:bg-red-600' 
+								: 'bg-orange-500 text-white hover:bg-orange-600'
+						}`}
+					>
+						{isFavorite(id) ? '❤️ Quitar de Favoritos' : '🤍 Agregar a Favoritos'}
+					</button>
+					<button className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+						📱 Compartir Receta
+					</button>
 				</motion.div>
 			</div>
 		</div>

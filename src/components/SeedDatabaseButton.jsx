@@ -1279,3 +1279,627 @@ const SeedDatabaseButton = () => {
 }
 
 export default SeedDatabaseButton 
+
+		title: "Pan de Papa",
+
+		description: "Pan suave argentino con puré de papa",
+
+		ingredients: [
+
+			"500g de harina 0000",
+
+			"200g de papa cocida y pisada",
+
+			"300ml de leche",
+
+			"2 huevos",
+
+			"50g de manteca",
+
+			"25g de levadura fresca",
+
+			"1 cucharadita de sal"
+
+		],
+
+		instructions: [
+
+			"Preparar puré de papa",
+
+			"Disolver levadura en leche tibia",
+
+			"Mezclar harina, papa y sal",
+
+			"Agregar huevos, manteca y leche",
+
+			"Amasar hasta formar masa suave",
+
+			"Dejar leudar 2 horas",
+
+			"Hornear a 180°C por 30 minutos"
+
+		],
+
+		cookingTime: 120,
+
+		servings: 8,
+
+		difficulty: "Medio",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"
+
+	},
+
+	{
+
+		title: "Bizcochos de Agua",
+
+		description: "Bizcochos ligeros argentinos sin grasa",
+
+		ingredients: [
+
+			"500g de harina 0000",
+
+			"300ml de agua tibia",
+
+			"2 huevos",
+
+			"1/4 taza de aceite",
+
+			"25g de levadura fresca",
+
+			"1 cucharadita de sal"
+
+		],
+
+		instructions: [
+
+			"Disolver levadura en agua tibia",
+
+			"Mezclar harina y sal",
+
+			"Agregar huevos, aceite y agua",
+
+			"Amasar hasta formar masa suave",
+
+			"Dejar leudar 1 hora",
+
+			"Formar bizcochos",
+
+			"Hornear a 200°C por 15 minutos"
+
+		],
+
+		cookingTime: 90,
+
+		servings: 20,
+
+		difficulty: "Fácil",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500"
+
+	},
+
+	{
+
+		title: "Pan de Maíz",
+
+		description: "Pan tradicional argentino con harina de maíz",
+
+		ingredients: [
+
+			"300g de harina de maíz",
+
+			"200g de harina 0000",
+
+			"400ml de leche",
+
+			"2 huevos",
+
+			"50g de manteca",
+
+			"25g de levadura fresca",
+
+			"1 cucharadita de sal"
+
+		],
+
+		instructions: [
+
+			"Disolver levadura en leche tibia",
+
+			"Mezclar harinas y sal",
+
+			"Agregar huevos, manteca y leche",
+
+			"Amasar hasta formar masa suave",
+
+			"Dejar leudar 2 horas",
+
+			"Formar pan",
+
+			"Hornear a 180°C por 35 minutos"
+
+		],
+
+		cookingTime: 150,
+
+		servings: 8,
+
+		difficulty: "Medio",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"
+
+	},
+
+	{
+
+		title: "Galletas de Limón",
+
+		description: "Galletas caseras con ralladura de limón",
+
+		ingredients: [
+
+			"300g de harina 0000",
+
+			"200g de manteca",
+
+			"150g de azúcar",
+
+			"2 huevos",
+
+			"Ralladura de 2 limones",
+
+			"1 cucharadita de esencia de vainilla",
+
+			"1/2 cucharadita de sal"
+
+		],
+
+		instructions: [
+
+			"Batir manteca con azúcar",
+
+			"Agregar huevos, ralladura y vainilla",
+
+			"Mezclar harina y sal",
+
+			"Combinar hasta formar masa",
+
+			"Enfriar 30 minutos",
+
+			"Estirar y cortar",
+
+			"Hornear a 180°C por 12 minutos"
+
+		],
+
+		cookingTime: 60,
+
+		servings: 30,
+
+		difficulty: "Fácil",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500"
+
+	},
+
+	{
+
+		title: "Pan de Centeno",
+
+		description: "Pan saludable argentino con harina de centeno",
+
+		ingredients: [
+
+			"400g de harina de centeno",
+
+			"100g de harina 0000",
+
+			"400ml de agua tibia",
+
+			"25g de levadura fresca",
+
+			"2 cucharaditas de sal",
+
+			"2 cucharadas de miel"
+
+		],
+
+		instructions: [
+
+			"Disolver levadura en agua tibia",
+
+			"Mezclar harinas, sal y miel",
+
+			"Agregar agua con levadura",
+
+			"Amasar hasta formar masa suave",
+
+			"Dejar leudar 3 horas",
+
+			"Formar pan",
+
+			"Hornear a 200°C por 45 minutos"
+
+		],
+
+		cookingTime: 240,
+
+		servings: 8,
+
+		difficulty: "Medio",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"
+
+	},
+
+	{
+
+		title: "Bizcochos de Leche",
+
+		description: "Bizcochos suaves argentinos con leche",
+
+		ingredients: [
+
+			"500g de harina 0000",
+
+			"300ml de leche",
+
+			"2 huevos",
+
+			"100g de manteca",
+
+			"25g de levadura fresca",
+
+			"1 cucharadita de sal",
+
+			"1 cucharada de azúcar"
+
+		],
+
+		instructions: [
+
+			"Calentar leche y disolver levadura",
+
+			"Mezclar harina, sal y azúcar",
+
+			"Agregar huevos, manteca y leche",
+
+			"Amasar hasta formar masa suave",
+
+			"Dejar leudar 1 hora",
+
+			"Formar bizcochos",
+
+			"Hornear a 180°C por 20 minutos"
+
+		],
+
+		cookingTime: 90,
+
+		servings: 15,
+
+		difficulty: "Medio",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500"
+
+	},
+
+	{
+
+		title: "Pan de Salvado",
+
+		description: "Pan integral argentino con salvado",
+
+		ingredients: [
+
+			"400g de harina 0000",
+
+			"100g de salvado de trigo",
+
+			"400ml de agua tibia",
+
+			"25g de levadura fresca",
+
+			"2 cucharaditas de sal",
+
+			"2 cucharadas de miel"
+
+		],
+
+		instructions: [
+
+			"Disolver levadura en agua tibia",
+
+			"Mezclar harina, salvado, sal y miel",
+
+			"Agregar agua con levadura",
+
+			"Amasar hasta formar masa suave",
+
+			"Dejar leudar 2 horas",
+
+			"Formar pan",
+
+			"Hornear a 200°C por 40 minutos"
+
+		],
+
+		cookingTime: 180,
+
+		servings: 8,
+
+		difficulty: "Medio",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"
+
+	},
+
+	{
+
+		title: "Galletas de Chocolate",
+
+		description: "Galletas caseras con chips de chocolate",
+
+		ingredients: [
+
+			"300g de harina 0000",
+
+			"200g de manteca",
+
+			"150g de azúcar",
+
+			"2 huevos",
+
+			"200g de chips de chocolate",
+
+			"1 cucharadita de esencia de vainilla",
+
+			"1/2 cucharadita de sal"
+
+		],
+
+		instructions: [
+
+			"Batir manteca con azúcar",
+
+			"Agregar huevos y vainilla",
+
+			"Mezclar harina y sal",
+
+			"Agregar chips de chocolate",
+
+			"Formar bolitas",
+
+			"Hornear a 180°C por 12 minutos"
+
+		],
+
+		cookingTime: 45,
+
+		servings: 24,
+
+		difficulty: "Fácil",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500"
+
+	},
+
+	{
+
+		title: "Pan de Avena",
+
+		description: "Pan saludable argentino con avena",
+
+		ingredients: [
+
+			"400g de harina 0000",
+
+			"100g de avena",
+
+			"400ml de leche",
+
+			"2 huevos",
+
+			"50g de manteca",
+
+			"25g de levadura fresca",
+
+			"1 cucharadita de sal"
+
+		],
+
+		instructions: [
+
+			"Disolver levadura en leche tibia",
+
+			"Mezclar harina, avena y sal",
+
+			"Agregar huevos, manteca y leche",
+
+			"Amasar hasta formar masa suave",
+
+			"Dejar leudar 2 horas",
+
+			"Formar pan",
+
+			"Hornear a 180°C por 35 minutos"
+
+		],
+
+		cookingTime: 150,
+
+		servings: 8,
+
+		difficulty: "Medio",
+
+		category: "Panadería",
+
+		imageUrl: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500"
+
+	}
+
+]
+
+
+
+const SeedDatabaseButton = () => {
+
+	const [loading, setLoading] = useState(false)
+
+	const { isAdmin } = useAuth()
+
+
+
+	// Solo mostrar el botón si el usuario es administrador
+
+	if (!isAdmin) {
+
+		return null
+
+	}
+
+
+
+	const handleSeedDatabase = async () => {
+
+		if (!window.confirm('¿Estás seguro de que quieres poblar la base de datos con recetas argentinas? Esta acción no se puede deshacer.')) {
+
+			return
+
+		}
+
+
+
+		setLoading(true)
+
+		
+
+		try {
+
+			console.log('🌱 Iniciando población de Firestore con recetas argentinas...')
+
+			
+
+			const recipesRef = collection(db, 'recipes')
+
+			let addedCount = 0
+
+			
+
+			for (const recipe of recipesData) {
+
+				// Agregar timestamps
+
+				const recipeWithTimestamps = {
+
+					...recipe,
+
+					createdAt: serverTimestamp(),
+
+					updatedAt: serverTimestamp()
+
+				}
+
+				
+
+				const docRef = await addDoc(recipesRef, recipeWithTimestamps)
+
+				console.log(`✅ Receta agregada: ${recipe.title} (ID: ${docRef.id})`)
+
+				addedCount++
+
+				
+
+				// Mostrar progreso
+
+				toast.success(`Receta ${addedCount}/${recipesData.length}: ${recipe.title}`)
+
+			}
+
+			
+
+			console.log('🎉 ¡Base de datos poblada exitosamente!')
+
+			console.log(`📊 Se agregaron ${addedCount} recetas argentinas`)
+
+			
+
+			toast.success(`¡Base de datos poblada exitosamente! Se agregaron ${addedCount} recetas argentinas`)
+
+			
+
+		} catch (error) {
+
+			console.error('❌ Error al poblar la base de datos:', error)
+
+			toast.error('Error al poblar la base de datos: ' + error.message)
+
+		} finally {
+
+			setLoading(false)
+
+		}
+
+	}
+
+
+
+	return (
+
+		<motion.button
+
+			whileHover={{ scale: 1.05 }}
+
+			whileTap={{ scale: 0.95 }}
+
+			onClick={handleSeedDatabase}
+
+			disabled={loading}
+
+			className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+
+		>
+
+			{loading ? (
+
+				<div className="flex items-center">
+
+					<div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+
+					Poblando base de datos...
+
+				</div>
+
+			) : (
+
+				'🌱 Poblar Base de Datos'
+
+			)}
+
+		</motion.button>
+
+	)
+
+}
+
+
+
+export default SeedDatabaseButton 

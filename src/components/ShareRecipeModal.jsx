@@ -1,6 +1,19 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import toast from 'react-hot-toast'
+import { 
+	FiShare2, 
+	FiCopy, 
+	FiCheck,
+	FiX,
+	FiRotateCw
+} from 'react-icons/fi'
+import { 
+	FaWhatsapp, 
+	FaFacebook, 
+	FaTwitter, 
+	FaInstagram 
+} from 'react-icons/fa'
 
 const ShareRecipeModal = ({ isOpen, onClose, recipe }) => {
 	const [copied, setCopied] = useState(false)
@@ -87,11 +100,11 @@ const ShareRecipeModal = ({ isOpen, onClose, recipe }) => {
 								<div className="flex items-center justify-between">
 									<div className="flex items-center">
 										<motion.div
-											animate={{ rotate: 360 }}
-											transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-											className="w-10 h-10 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mr-4"
+											whileHover={{ scale: 1.1, rotate: 15 }}
+											whileTap={{ scale: 0.9 }}
+											className="w-10 h-10 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mr-4 transition-all duration-200"
 										>
-											<span className="text-white text-xl">📤</span>
+											<FiShare2 className="text-white text-xl" />
 										</motion.div>
 										<div>
 											<h2 className="text-2xl font-bold text-gray-800">Compartir Receta</h2>
@@ -104,9 +117,7 @@ const ShareRecipeModal = ({ isOpen, onClose, recipe }) => {
 										onClick={onClose}
 										className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors"
 									>
-										<svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-										</svg>
+										<FiX className="w-5 h-5 text-gray-600" />
 									</motion.button>
 								</div>
 							</motion.div>
@@ -150,13 +161,13 @@ const ShareRecipeModal = ({ isOpen, onClose, recipe }) => {
 											whileHover={{ scale: 1.05 }}
 											whileTap={{ scale: 0.95 }}
 											onClick={handleCopyLink}
-											className={`px-4 py-3 rounded-r-xl font-medium transition-all duration-200 ${
+											className={`px-4 py-3 rounded-r-xl font-medium transition-all duration-200 flex items-center justify-center ${
 												copied 
 													? 'bg-green-500 text-white' 
 													: 'bg-green-500 text-white hover:bg-green-600'
 											}`}
 										>
-											{copied ? '✅' : '📋'}
+											{copied ? <FiCheck className="w-5 h-5" /> : <FiCopy className="w-5 h-5" />}
 										</motion.button>
 									</div>
 								</motion.div>
@@ -179,7 +190,7 @@ const ShareRecipeModal = ({ isOpen, onClose, recipe }) => {
 										onClick={handleShareWhatsApp}
 										className="w-full flex items-center px-4 py-3 bg-green-500 text-white rounded-xl hover:bg-green-600 transition-all duration-200 shadow-lg hover:shadow-xl"
 									>
-										<span className="text-xl mr-3">📱</span>
+										<FaWhatsapp className="text-xl mr-3" />
 										<span className="font-medium">Compartir en WhatsApp</span>
 									</motion.button>
 
@@ -190,7 +201,7 @@ const ShareRecipeModal = ({ isOpen, onClose, recipe }) => {
 										onClick={handleShareFacebook}
 										className="w-full flex items-center px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl"
 									>
-										<span className="text-xl mr-3">📘</span>
+										<FaFacebook className="text-xl mr-3" />
 										<span className="font-medium">Compartir en Facebook</span>
 									</motion.button>
 
@@ -201,7 +212,7 @@ const ShareRecipeModal = ({ isOpen, onClose, recipe }) => {
 										onClick={handleShareTwitter}
 										className="w-full flex items-center px-4 py-3 bg-blue-400 text-white rounded-xl hover:bg-blue-500 transition-all duration-200 shadow-lg hover:shadow-xl"
 									>
-										<span className="text-xl mr-3">🐦</span>
+										<FaTwitter className="text-xl mr-3" />
 										<span className="font-medium">Compartir en Twitter</span>
 									</motion.button>
 
@@ -212,7 +223,7 @@ const ShareRecipeModal = ({ isOpen, onClose, recipe }) => {
 										onClick={handleShareInstagram}
 										className="w-full flex items-center px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-200 shadow-lg hover:shadow-xl"
 									>
-										<span className="text-xl mr-3">📷</span>
+										<FaInstagram className="text-xl mr-3" />
 										<span className="font-medium">Compartir en Instagram</span>
 									</motion.button>
 								</motion.div>

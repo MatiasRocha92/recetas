@@ -4,12 +4,15 @@ import { useFavorites } from '../hooks/useFavorites'
 import { useAuth } from '../context/AuthContext'
 import { motion } from 'framer-motion'
 import StepByStep from '../components/StepByStep'
+import ShareRecipeModal from '../components/ShareRecipeModal'
+import { useState } from 'react'
 
 const RecipeDetailPage = () => {
 	const { id } = useParams()
 	const { recipe, loading, error } = useRecipe(id)
 	const { toggleFavorite, isFavorite } = useFavorites()
 	const { currentUser } = useAuth()
+	const [showShareModal, setShowShareModal] = useState(false)
 
 	const handleFavoriteToggle = async () => {
 		if (!currentUser) {
@@ -19,6 +22,10 @@ const RecipeDetailPage = () => {
 		}
 
 		await toggleFavorite(id)
+	}
+
+	const handleShareRecipe = () => {
+		setShowShareModal(true)
 	}
 
 	if (loading) {
@@ -193,11 +200,23 @@ const RecipeDetailPage = () => {
 					>
 						{isFavorite(id) ? '❤️ Quitar de Favoritos' : '🤍 Agregar a Favoritos'}
 					</button>
-					<button className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors">
+					<motion.button 
+						whileHover={{ scale: 1.05, y: -2 }}
+						whileTap={{ scale: 0.95 }}
+						onClick={handleShareRecipe}
+						className="bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+					>
 						📱 Compartir Receta
-					</button>
+					</motion.button>
 				</motion.div>
 			</div>
+
+			{/* Modal de Compartir */}
+			<ShareRecipeModal 
+				isOpen={showShareModal}
+				onClose={() => setShowShareModal(false)}
+				recipe={recipe}
+			/>
 		</div>
 	)
 }

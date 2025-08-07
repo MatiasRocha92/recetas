@@ -1,11 +1,16 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { useRecipes } from '../hooks/useRecipes'
 import RecipeCard from '../components/RecipeCard'
+import AddRecipeForm from '../components/AddRecipeForm'
+import { useAuth } from '../context/AuthContext'
 
 const RecipesPage = () => {
 	const { recipes, loading, error } = useRecipes()
+	const { currentUser } = useAuth()
 	const [searchTerm, setSearchTerm] = useState('')
 	const [difficultyFilter, setDifficultyFilter] = useState('')
+	const [showAddRecipeForm, setShowAddRecipeForm] = useState(false)
 
 	// Filtrar recetas con validaciones
 	const filteredRecipes = recipes.filter(recipe => {
@@ -29,9 +34,24 @@ const RecipesPage = () => {
 					<h1 className="text-4xl font-bold text-gray-800 mb-4">
 						Todas las Recetas
 					</h1>
-					<p className="text-gray-600">
+					<p className="text-gray-600 mb-6">
 						Explora nuestra colección completa de recetas
 					</p>
+					
+					{/* Botón de agregar receta solo para usuarios autenticados */}
+					{currentUser && (
+						<motion.button
+							whileHover={{ scale: 1.05, y: -3 }}
+							whileTap={{ scale: 0.95 }}
+							onClick={() => setShowAddRecipeForm(true)}
+							className="flex items-center mx-auto px-8 py-4 font-medium text-white transition-all duration-200 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl hover:from-green-600 hover:to-green-700 shadow-xl hover:shadow-2xl"
+						>
+							<svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+							</svg>
+							Agregar Mi Receta
+						</motion.button>
+					)}
 				</div>
 
 				{/* Filtros */}
@@ -129,6 +149,12 @@ const RecipesPage = () => {
 					</>
 				)}
 			</div>
+			
+			{/* Formulario de agregar receta */}
+			<AddRecipeForm 
+				isOpen={showAddRecipeForm} 
+				onClose={() => setShowAddRecipeForm(false)} 
+			/>
 		</div>
 	)
 }

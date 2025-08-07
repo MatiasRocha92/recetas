@@ -34,5 +34,5 @@ try {
 	console.log('⚠️  No se encontró archivo .env, usando variables del sistema')
 }
 
-// Importar y ejecutar el script de población
-import('./seed-firestore.js') 
+// Importar y ejecutar el script de población optimizado
+import('./seed-optimized.js') 

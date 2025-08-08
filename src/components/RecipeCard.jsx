@@ -15,6 +15,8 @@ const RecipeCard = memo(({ recipe }) => {
 		return null
 	}
 
+	const isFavorited = isFavorite(recipe.id)
+
 	return (
 		<motion.div
 			whileHover={{ scale: 1.03 }}
@@ -22,7 +24,7 @@ const RecipeCard = memo(({ recipe }) => {
 		>
 			<Link 
 				to={`/recipe/${recipe.id}`}
-				className="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform"
+				className="block overflow-hidden transition-transform bg-white rounded-lg shadow-lg"
 			>
 				{/* Imagen optimizada */}
 				<div className="relative h-48 bg-gray-200">
@@ -36,14 +38,14 @@ const RecipeCard = memo(({ recipe }) => {
 							loading="lazy"
 						/>
 					) : (
-						<div className="w-full h-48 bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
-							<span className="text-gray-500 text-sm">Sin imagen</span>
+						<div className="flex items-center justify-center w-full h-48 bg-gradient-to-br from-gray-300 to-gray-400">
+							<span className="text-sm text-gray-500">Sin imagen</span>
 						</div>
 					)}
 					
 					{/* Badge de dificultad */}
 					{recipe.difficulty && (
-						<div className="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded text-sm font-medium">
+						<div className="absolute px-2 py-1 text-sm font-medium text-white bg-orange-500 rounded top-2 right-2">
 							{recipe.difficulty}
 						</div>
 					)}
@@ -58,11 +60,11 @@ const RecipeCard = memo(({ recipe }) => {
 								e.preventDefault()
 								toggleFavorite(recipe.id)
 							}}
-							className="absolute top-2 left-2 bg-white bg-opacity-90 hover:bg-opacity-100 p-2 rounded-full shadow-lg transition-all duration-200"
+							className="absolute p-2 transition-all duration-200 bg-white rounded-full shadow-lg top-2 left-2 bg-opacity-90 hover:bg-opacity-100"
 						>
 							<svg 
 								className={`w-5 h-5 transition-colors duration-200 ${
-									isFavorite(recipe.id) 
+									isFavorited 
 										? 'text-red-500 fill-current' 
 										: 'text-gray-400 hover:text-red-400'
 								}`}
@@ -83,10 +85,10 @@ const RecipeCard = memo(({ recipe }) => {
 				
 				{/* Contenido */}
 				<div className="p-6">
-					<h3 className="font-semibold text-lg text-gray-800 mb-2 line-clamp-2">
+					<h3 className="mb-2 text-lg font-semibold text-gray-800 line-clamp-2">
 						{recipe.title}
 					</h3>
-					<p className="text-gray-600 text-sm mb-3 line-clamp-2">
+					<p className="mb-3 text-sm text-gray-600 line-clamp-2">
 						{recipe.description || 'Sin descripción'}
 					</p>
 					
@@ -101,6 +103,26 @@ const RecipeCard = memo(({ recipe }) => {
 							{recipe.servings || 0} porciones
 						</span>
 					</div>
+
+					{/* Botón de quitar de favoritos para móviles */}
+					{currentUser && isFavorited && (
+						<div className="mt-4 md:hidden">
+							<motion.button
+								whileTap={{ scale: 0.95 }}
+								onClick={(e) => {
+									e.stopPropagation()
+									e.preventDefault()
+									toggleFavorite(recipe.id)
+								}}
+								className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-red-600 transition-colors border border-red-200 rounded-lg bg-red-50 hover:bg-red-100"
+							>
+								<svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+								</svg>
+								Quitar de favoritos
+							</motion.button>
+						</div>
+					)}
 				</div>
 			</Link>
 		</motion.div>

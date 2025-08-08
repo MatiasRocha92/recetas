@@ -1,7 +1,6 @@
 import { useAuth } from '../context/AuthContext'
 import { Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import SeedDatabaseButton from '../components/SeedDatabaseButton'
 
 const AdminPage = () => {
 	const { currentUser, isAdmin } = useAuth()
@@ -48,11 +47,14 @@ const AdminPage = () => {
 								Poblar Base de Datos con Recetas Argentinas
 							</h3>
 							<p className="text-gray-600 mb-4">
-								Este botón agregará 20 recetas de panadería argentina a la base de datos. 
-								Esta acción es irreversible.
+								El componente para poblar la base de datos ha sido temporalmente removido. 
+								Las recetas ya están disponibles en la aplicación.
 							</p>
-							<div className="flex justify-center">
-								<SeedDatabaseButton />
+							<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+								<p className="text-blue-800 text-sm">
+									<strong>Nota:</strong> Si necesitas agregar más recetas, puedes hacerlo manualmente 
+									desde la interfaz de usuario o contactar al administrador del sistema.
+								</p>
 							</div>
 						</div>
 

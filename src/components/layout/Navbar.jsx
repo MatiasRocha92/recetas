@@ -50,8 +50,8 @@ const Navbar = () => {
 						🍳 Sazonea
 					</Link>
 					
-					{/* Menú de escritorio */}
-					<div className="hidden md:flex items-center space-x-6">
+					{/* Menú de escritorio - visible en pantallas medianas y grandes */}
+					<div className="hidden sm:flex items-center space-x-6">
 						<Link to="/" className="font-medium text-gray-700 transition-colors hover:text-orange-600">Inicio</Link>
 						<Link to="/recipes" className="font-medium text-gray-700 transition-colors hover:text-orange-600">Recetas</Link>
 						
@@ -189,8 +189,8 @@ const Navbar = () => {
 						)}
 					</div>
 
-					{/* Botón de menú hamburguesa para móviles */}
-					<div className="md:hidden" ref={mobileMenuRef}>
+					{/* Botón de menú hamburguesa para móviles - visible solo en pantallas pequeñas */}
+					<div className="sm:hidden" ref={mobileMenuRef}>
 						<motion.button
 							whileTap={{ scale: 0.95 }}
 							onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -203,7 +203,7 @@ const Navbar = () => {
 					</div>
 				</div>
 
-				{/* Menú móvil */}
+				{/* Menú móvil - visible solo en pantallas pequeñas */}
 				<AnimatePresence>
 					{showMobileMenu && (
 						<motion.div
@@ -211,7 +211,7 @@ const Navbar = () => {
 							animate={{ opacity: 1, height: 'auto' }}
 							exit={{ opacity: 0, height: 0 }}
 							transition={{ duration: 0.3 }}
-							className="md:hidden border-t border-gray-200 bg-white"
+							className="sm:hidden border-t border-gray-200 bg-white"
 						>
 							<div className="px-4 py-4 space-y-4">
 								<Link 

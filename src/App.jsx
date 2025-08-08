@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import LoadingSpinner from './components/LoadingSpinner'
+import DebugInfo from './components/DebugInfo'
 
 // Lazy loading para todas las páginas
 const HomePage = React.lazy(() => import('./pages/HomePage'))
@@ -53,6 +54,7 @@ function App() {
 						success: { duration: 3000, theme: { primary: '#f97316', secondary: '#fff' } },
 					}}
 				/>
+				<DebugInfo />
 			</BrowserRouter>
 		</AuthProvider>
 	)

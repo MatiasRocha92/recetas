@@ -1,7 +1,29 @@
 import { motion } from 'framer-motion'
 import Step from './Step'
 
-const StepByStep = ({ steps }) => {
+const StepByStep = ({ steps = [], instructions = [] }) => {
+	// Usar steps o instructions, cualquiera que esté disponible
+	const stepsToRender = steps.length > 0 ? steps : instructions
+
+	if (!Array.isArray(stepsToRender) || stepsToRender.length === 0) {
+		return (
+			<div className="text-gray-500 italic">
+				No se especificaron instrucciones para esta receta.
+			</div>
+		)
+	}
+
+	// Filtrar elementos vacíos o undefined
+	const validSteps = stepsToRender.filter(step => step && typeof step === 'string' && step.trim() !== '')
+
+	if (validSteps.length === 0) {
+		return (
+			<div className="text-gray-500 italic">
+				No se especificaron instrucciones válidas para esta receta.
+			</div>
+		)
+	}
+
 	return (
 		<motion.div 
 			initial={{ opacity: 0, y: 20 }}
@@ -9,9 +31,7 @@ const StepByStep = ({ steps }) => {
 			transition={{ duration: 0.6 }}
 			className="space-y-6"
 		>
-			<h2 className="text-2xl font-bold text-gray-800 mb-6">Instrucciones Paso a Paso</h2>
-			
-			{steps.map((step, index) => (
+			{validSteps.map((step, index) => (
 				<motion.div
 					key={index}
 					initial={{ opacity: 0, x: -20 }}
@@ -21,7 +41,7 @@ const StepByStep = ({ steps }) => {
 					<Step 
 						step={step} 
 						stepNumber={index + 1}
-						totalSteps={steps.length}
+						totalSteps={validSteps.length}
 					/>
 				</motion.div>
 			))}

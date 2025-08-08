@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "seed": "node scripts/seed.js"
+    "seed": "node scripts/seed-optimized.js"
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",

@@ -1,11 +1,22 @@
-import { useFavoriteRecipes } from '../hooks/useFavoriteRecipes'
+import { useFavorites } from '../hooks/useFavorites'
+import { useRecipes } from '../hooks/useRecipes'
 import { useAuth } from '../context/AuthContext'
 import RecipeCard from '../components/RecipeCard'
 import { motion } from 'framer-motion'
+import { useMemo } from 'react'
 
 const FavoritesPage = () => {
-	const { favoriteRecipes, loading, error } = useFavoriteRecipes()
+	const { favorites, loading: favoritesLoading } = useFavorites()
+	const { recipes, loading: recipesLoading } = useRecipes()
 	const { currentUser } = useAuth()
+
+	// Filtrar recetas favoritas
+	const favoriteRecipes = useMemo(() => {
+		if (!favorites || !recipes) return []
+		return recipes.filter(recipe => favorites.includes(recipe.id))
+	}, [favorites, recipes])
+
+	const loading = favoritesLoading || recipesLoading
 
 	if (loading) {
 		return (
@@ -13,18 +24,6 @@ const FavoritesPage = () => {
 				<div className="text-center">
 					<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto"></div>
 					<p className="mt-4 text-gray-600">Cargando favoritos, che...</p>
-				</div>
-			</div>
-		)
-	}
-
-	if (error) {
-		return (
-			<div className="min-h-screen bg-gray-50 flex items-center justify-center">
-				<div className="text-center">
-					<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4">
-						{error}
-					</div>
 				</div>
 			</div>
 		)

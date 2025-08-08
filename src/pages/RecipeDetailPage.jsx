@@ -73,6 +73,10 @@ const RecipeDetailPage = () => {
 		)
 	}
 
+	// Validar que los arrays existan antes de usarlos
+	const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : []
+	const instructions = Array.isArray(recipe.instructions) ? recipe.instructions : []
+
 	return (
 		<div className="min-h-screen bg-gray-50">
 			<div className="max-w-6xl mx-auto px-8 py-8">
@@ -193,14 +197,18 @@ const RecipeDetailPage = () => {
 					<h2 className="text-2xl font-bold text-gray-800 mb-6">
 						Ingredientes
 					</h2>
-					<ul className="space-y-2">
-						{recipe.ingredients && recipe.ingredients.map((ingredient, index) => (
-							<li key={index} className="flex items-center">
-								<span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-								{ingredient}
-							</li>
-						))}
-					</ul>
+					{ingredients.length > 0 ? (
+						<ul className="space-y-2">
+							{ingredients.map((ingredient, index) => (
+								<li key={index} className="flex items-center">
+									<span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+									{ingredient}
+								</li>
+							))}
+						</ul>
+					) : (
+						<p className="text-gray-500 italic">No se especificaron ingredientes para esta receta.</p>
+					)}
 				</motion.div>
 
 				{/* Instrucciones */}
@@ -213,7 +221,11 @@ const RecipeDetailPage = () => {
 					<h2 className="text-2xl font-bold text-gray-800 mb-6">
 						Instrucciones
 					</h2>
-					<StepByStep instructions={recipe.instructions || []} />
+					{instructions.length > 0 ? (
+						<StepByStep instructions={instructions} />
+					) : (
+						<p className="text-gray-500 italic">No se especificaron instrucciones para esta receta.</p>
+					)}
 				</motion.div>
 			</div>
 

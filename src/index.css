@@ -29,3 +29,46 @@
     border-radius: 0.75rem;
   }
 }
+
+/* Estilos personalizados para el scrollbar del menú */
+@layer components {
+  .menu-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+  
+  .menu-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .menu-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .menu-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 3px;
+  }
+  
+  .menu-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
+  }
+  
+  /* Asegurar que el scrollbar funcione en Firefox */
+  .menu-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+  
+  /* Ocultar scrollbar en dispositivos móviles pero mantener funcionalidad */
+  @media (max-width: 768px) {
+    .menu-scrollbar::-webkit-scrollbar {
+      width: 0px;
+    }
+    
+    .menu-scrollbar {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+  }
+}

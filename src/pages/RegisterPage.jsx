@@ -18,7 +18,7 @@ const RegisterPage = () => {
 		setError('')
 		
 		if (!email || !password || !confirmPassword) {
-			setError('Por favor completa todos los campos')
+			setError('Por favor completá todos los campos, che')
 			return
 		}
 
@@ -67,7 +67,7 @@ const RegisterPage = () => {
 						transition={{ duration: 0.6, delay: 0.3 }}
 						className="mt-2 text-sm text-gray-600"
 					>
-						Únete a RecetasApp y guarda tus recetas favoritas
+						Unite a RecetasApp y guardá tus recetas favoritas
 					</motion.p>
 				</div>
 
@@ -116,9 +116,8 @@ const RegisterPage = () => {
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-								placeholder="••••••••"
+								placeholder="Tu contraseña"
 							/>
-							<p className="mt-1 text-xs text-gray-500">Mínimo 6 caracteres</p>
 						</div>
 
 						<div>
@@ -133,13 +132,15 @@ const RegisterPage = () => {
 								value={confirmPassword}
 								onChange={(e) => setConfirmPassword(e.target.value)}
 								className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
-								placeholder="••••••••"
+								placeholder="Confirmá tu contraseña"
 							/>
 						</div>
 					</div>
 
 					<div>
-						<button
+						<motion.button
+							whileHover={{ scale: 1.02 }}
+							whileTap={{ scale: 0.98 }}
 							type="submit"
 							disabled={loading}
 							className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -152,40 +153,33 @@ const RegisterPage = () => {
 							) : (
 								'Crear Cuenta'
 							)}
-						</button>
+						</motion.button>
 					</div>
-
-					<div className="relative">
-						<div className="absolute inset-0 flex items-center">
-							<div className="w-full border-t border-gray-300" />
-						</div>
-						<div className="relative flex justify-center text-sm">
-							<span className="px-2 bg-gray-50 text-gray-500">O continúa con</span>
-						</div>
-					</div>
-
-					<GoogleAuthButton />
 
 					<div className="text-center">
 						<p className="text-sm text-gray-600">
-							¿Ya tienes cuenta?{' '}
+							¿Ya tenés cuenta?{' '}
 							<Link to="/login" className="font-medium text-orange-600 hover:text-orange-500">
-								Inicia sesión aquí
+								Iniciá sesión acá
 							</Link>
 						</p>
 					</div>
-				</motion.form>
 
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ duration: 0.6, delay: 0.5 }}
-					className="text-center"
-				>
-					<Link to="/" className="text-sm text-gray-500 hover:text-gray-700">
-						← Volver al Inicio
-					</Link>
-				</motion.div>
+					<div className="mt-6">
+						<div className="relative">
+							<div className="absolute inset-0 flex items-center">
+								<div className="w-full border-t border-gray-300" />
+							</div>
+							<div className="relative flex justify-center text-sm">
+								<span className="px-2 bg-gray-50 text-gray-500">O continuá con</span>
+							</div>
+						</div>
+
+						<div className="mt-6">
+							<GoogleAuthButton />
+						</div>
+					</div>
+				</motion.form>
 			</motion.div>
 		</div>
 	)

@@ -1,11 +1,15 @@
+import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useFavorites } from '../hooks/useFavorites'
 import { useAuth } from '../context/AuthContext'
+import { useImageOptimization } from '../hooks/useImageOptimization'
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = memo(({ recipe }) => {
 	const { isFavorite, toggleFavorite } = useFavorites()
 	const { currentUser } = useAuth()
+	const { src: optimizedSrc, loading: imageLoading, error: imageError } = useImageOptimization(recipe.imageUrl)
+
 	// Validar que recipe exista y tenga las propiedades necesarias
 	if (!recipe || !recipe.id || !recipe.title) {
 		return null
@@ -20,15 +24,23 @@ const RecipeCard = ({ recipe }) => {
 				to={`/recipe/${recipe.id}`}
 				className="block bg-white rounded-lg shadow-lg overflow-hidden transition-transform"
 			>
-				{/* Imagen */}
+				{/* Imagen optimizada */}
 				<div className="relative h-48 bg-gray-200">
-					{recipe.imageUrl && (
+					{optimizedSrc && !imageError ? (
 						<img 
-							src={recipe.imageUrl} 
+							src={optimizedSrc} 
 							alt={recipe.title}
-							className="w-full h-48 object-cover"
+							className={`w-full h-48 object-cover transition-opacity duration-300 ${
+								imageLoading ? 'opacity-50' : 'opacity-100'
+							}`}
+							loading="lazy"
 						/>
+					) : (
+						<div className="w-full h-48 bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
+							<span className="text-gray-500 text-sm">Sin imagen</span>
+						</div>
 					)}
+					
 					{/* Badge de dificultad */}
 					{recipe.difficulty && (
 						<div className="absolute top-2 right-2 bg-orange-500 text-white px-2 py-1 rounded text-sm font-medium">
@@ -93,6 +105,8 @@ const RecipeCard = ({ recipe }) => {
 			</Link>
 		</motion.div>
 	)
-}
+})
+
+RecipeCard.displayName = 'RecipeCard'
 
 export default RecipeCard 

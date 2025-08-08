@@ -1,16 +1,20 @@
+import React, { Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
-import HomePage from './pages/HomePage'
-import RecipesPage from './pages/RecipesPage'
-import RecipeDetailPage from './pages/RecipeDetailPage'
-import FavoritesPage from './pages/FavoritesPage'
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
-import AdminPage from './pages/AdminPage'
+import LoadingSpinner from './components/LoadingSpinner'
+
+// Lazy loading para todas las páginas
+const HomePage = React.lazy(() => import('./pages/HomePage'))
+const RecipesPage = React.lazy(() => import('./pages/RecipesPage'))
+const RecipeDetailPage = React.lazy(() => import('./pages/RecipeDetailPage'))
+const FavoritesPage = React.lazy(() => import('./pages/FavoritesPage'))
+const LoginPage = React.lazy(() => import('./pages/LoginPage'))
+const RegisterPage = React.lazy(() => import('./pages/RegisterPage'))
+const AdminPage = React.lazy(() => import('./pages/AdminPage'))
 
 function App() {
 	return (
@@ -19,23 +23,25 @@ function App() {
 				<div className="min-h-screen flex flex-col">
 					<Navbar />
 					<main className="flex-1">
-						<Routes>
-							<Route path="/" element={<HomePage />} />
-							<Route path="/recipes" element={<RecipesPage />} />
-							<Route path="/recipe/:id" element={<RecipeDetailPage />} />
-							<Route path="/favorites" element={
-								<ProtectedRoute>
-									<FavoritesPage />
-								</ProtectedRoute>
-							} />
-							<Route path="/admin" element={
-								<ProtectedRoute>
-									<AdminPage />
-								</ProtectedRoute>
-							} />
-							<Route path="/login" element={<LoginPage />} />
-							<Route path="/register" element={<RegisterPage />} />
-						</Routes>
+						<Suspense fallback={<LoadingSpinner />}>
+							<Routes>
+								<Route path="/" element={<HomePage />} />
+								<Route path="/recipes" element={<RecipesPage />} />
+								<Route path="/recipe/:id" element={<RecipeDetailPage />} />
+								<Route path="/favorites" element={
+									<ProtectedRoute>
+										<FavoritesPage />
+									</ProtectedRoute>
+								} />
+								<Route path="/admin" element={
+									<ProtectedRoute>
+										<AdminPage />
+									</ProtectedRoute>
+								} />
+								<Route path="/login" element={<LoginPage />} />
+								<Route path="/register" element={<RegisterPage />} />
+							</Routes>
+						</Suspense>
 					</main>
 					<Footer />
 				</div>

@@ -5,15 +5,25 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
 	plugins: [react()],
 	build: {
-		chunkSizeWarningLimit: 1000, // Aumentar el límite a 1000kb
+		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			output: {
 				manualChunks: {
-					// Separar framer-motion en su propio chunk
+					// Separar librerías grandes en chunks específicos
 					vendor: ['react', 'react-dom'],
 					animations: ['framer-motion'],
-					firebase: ['firebase/app', 'firebase/firestore', 'firebase/auth']
+					firebase: ['firebase/app', 'firebase/firestore', 'firebase/auth'],
+					router: ['react-router-dom'],
+					ui: ['react-hot-toast']
 				}
+			}
+		},
+		// Optimizaciones adicionales
+		minify: 'terser',
+		terserOptions: {
+			compress: {
+				drop_console: true,
+				drop_debugger: true
 			}
 		}
 	},
@@ -25,5 +35,9 @@ export default defineConfig({
 			port: 5173,
 			protocol: 'ws'
 		}
+	},
+	// Optimizaciones de desarrollo
+	optimizeDeps: {
+		include: ['react', 'react-dom', 'framer-motion', 'firebase/app', 'firebase/firestore', 'firebase/auth']
 	}
 })

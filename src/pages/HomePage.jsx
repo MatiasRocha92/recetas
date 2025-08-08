@@ -11,10 +11,10 @@ const HomePage = () => {
 			<div className="bg-gradient-to-r from-orange-500 to-red-500 text-white py-16">
 				<div className="max-w-6xl mx-auto px-8 text-center">
 					<h1 className="text-5xl font-bold mb-4">
-						Descubre Deliciosas Recetas
+						¡Descubrí las Mejores Recetas Criollas!
 					</h1>
 					<p className="text-xl mb-8 opacity-90">
-						Explora nuestra colección de recetas caseras y encuentra tu próxima comida favorita
+						Explorá nuestra colección de recetas caseras y encontrá tu próxima comida favorita.Lo importante se hace en casa.
 					</p>
 					<Link 
 						to="/recipes" 
@@ -30,7 +30,7 @@ const HomePage = () => {
 				{loading && (
 					<div className="text-center py-12">
 						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto"></div>
-						<p className="mt-4 text-gray-600">Cargando recetas...</p>
+						<p className="mt-4 text-gray-600">Cargando recetas, che...</p>
 					</div>
 				)}
 

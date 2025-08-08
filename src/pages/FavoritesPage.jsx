@@ -12,7 +12,7 @@ const FavoritesPage = () => {
 			<div className="min-h-screen bg-gray-50 flex items-center justify-center">
 				<div className="text-center">
 					<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto"></div>
-					<p className="mt-4 text-gray-600">Cargando favoritos...</p>
+					<p className="mt-4 text-gray-600">Cargando favoritos, che...</p>
 				</div>
 			</div>
 		)
@@ -43,7 +43,7 @@ const FavoritesPage = () => {
 						Mis Favoritos
 					</h1>
 					<p className="text-gray-600 text-lg">
-						Hola {currentUser?.email}, aquí están tus recetas favoritas
+						¡Hola {currentUser?.email}! Acá están tus recetas favoritas
 					</p>
 				</motion.div>
 
@@ -57,10 +57,10 @@ const FavoritesPage = () => {
 						<div className="text-center py-12">
 							<div className="text-6xl mb-4">🤍</div>
 							<h2 className="text-2xl font-bold text-gray-800 mb-4">
-								Aún no has guardado ninguna receta
+								Aún no guardaste ninguna receta
 							</h2>
 							<p className="text-gray-600 mb-6">
-								¡Explora y encuentra tus favoritas! Agrega las recetas que más te gusten a tus favoritos
+								¡Explorá y encontrá tus favoritas! Agregá las recetas que más te gusten a tus favoritos
 							</p>
 							<motion.button
 								whileHover={{ scale: 1.05 }}

@@ -27,7 +27,7 @@ const AdminPage = () => {
 						Panel de Administración
 					</h1>
 					<p className="text-gray-600 text-lg">
-						Bienvenido, {currentUser.email}
+						¡Bienvenido, {currentUser.email}!
 					</p>
 				</motion.div>
 
@@ -47,12 +47,12 @@ const AdminPage = () => {
 								Poblar Base de Datos con Recetas Argentinas
 							</h3>
 							<p className="text-gray-600 mb-4">
-								El componente para poblar la base de datos ha sido temporalmente removido. 
+								El componente para poblar la base de datos ha sido temporalmente removido, che. 
 								Las recetas ya están disponibles en la aplicación.
 							</p>
 							<div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
 								<p className="text-blue-800 text-sm">
-									<strong>Nota:</strong> Si necesitas agregar más recetas, puedes hacerlo manualmente 
+									<strong>Nota:</strong> Si necesitás agregar más recetas, podés hacerlo manualmente 
 									desde la interfaz de usuario o contactar al administrador del sistema.
 								</p>
 							</div>

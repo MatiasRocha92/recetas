@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useRecipes } from '../hooks/useRecipes'
+import { useDebounce } from '../hooks/useDebounce'
 import RecipeCard from '../components/RecipeCard'
 import AddRecipeForm from '../components/AddRecipeForm'
 import { useAuth } from '../context/AuthContext'
@@ -12,19 +13,41 @@ const RecipesPage = () => {
 	const [difficultyFilter, setDifficultyFilter] = useState('')
 	const [showAddRecipeForm, setShowAddRecipeForm] = useState(false)
 
-	// Filtrar recetas con validaciones
-	const filteredRecipes = recipes.filter(recipe => {
-		// Validar que recipe y sus propiedades existan
-		if (!recipe || !recipe.title || !recipe.description) {
-			return false
-		}
+	// Usar debounce para la búsqueda
+	const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
-		const matchesSearch = recipe.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-							recipe.description.toLowerCase().includes(searchTerm.toLowerCase())
-		const matchesDifficulty = difficultyFilter === '' || recipe.difficulty === difficultyFilter
-		
-		return matchesSearch && matchesDifficulty
-	})
+	// Memoizar los filtros para evitar re-cálculos innecesarios
+	const filteredRecipes = useMemo(() => {
+		return recipes.filter(recipe => {
+			// Validar que recipe y sus propiedades existan
+			if (!recipe || !recipe.title || !recipe.description) {
+				return false
+			}
+
+			const matchesSearch = recipe.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+								recipe.description.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+			const matchesDifficulty = difficultyFilter === '' || recipe.difficulty === difficultyFilter
+			
+			return matchesSearch && matchesDifficulty
+		})
+	}, [recipes, debouncedSearchTerm, difficultyFilter])
+
+	// Memoizar los handlers para evitar re-renders
+	const handleSearchChange = useCallback((e) => {
+		setSearchTerm(e.target.value)
+	}, [])
+
+	const handleDifficultyChange = useCallback((e) => {
+		setDifficultyFilter(e.target.value)
+	}, [])
+
+	const handleAddRecipeClick = useCallback(() => {
+		setShowAddRecipeForm(true)
+	}, [])
+
+	const handleCloseAddRecipe = useCallback(() => {
+		setShowAddRecipeForm(false)
+	}, [])
 
 	return (
 		<div className="min-h-screen bg-gray-50">
@@ -35,7 +58,7 @@ const RecipesPage = () => {
 						Todas las Recetas
 					</h1>
 					<p className="text-gray-600 mb-6">
-						Explora nuestra colección completa de recetas
+						Explorá nuestra colección completa de recetas criollas
 					</p>
 					
 					{/* Botón de agregar receta solo para usuarios autenticados */}
@@ -43,7 +66,7 @@ const RecipesPage = () => {
 						<motion.button
 							whileHover={{ scale: 1.05, y: -3 }}
 							whileTap={{ scale: 0.95 }}
-							onClick={() => setShowAddRecipeForm(true)}
+							onClick={handleAddRecipeClick}
 							className="flex items-center mx-auto px-8 py-4 font-medium text-white transition-all duration-200 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl hover:from-green-600 hover:to-green-700 shadow-xl hover:shadow-2xl"
 						>
 							<svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +90,7 @@ const RecipesPage = () => {
 								id="search"
 								placeholder="Buscar por título o descripción..."
 								value={searchTerm}
-								onChange={(e) => setSearchTerm(e.target.value)}
+								onChange={handleSearchChange}
 								className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 							/>
 						</div>
@@ -80,7 +103,7 @@ const RecipesPage = () => {
 							<select
 								id="difficulty"
 								value={difficultyFilter}
-								onChange={(e) => setDifficultyFilter(e.target.value)}
+								onChange={handleDifficultyChange}
 								className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
 							>
 								<option value="">Todas las dificultades</option>
@@ -96,14 +119,14 @@ const RecipesPage = () => {
 				{loading && (
 					<div className="text-center py-12">
 						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto"></div>
-						<p className="mt-4 text-gray-600">Cargando recetas...</p>
+						<p className="mt-4 text-gray-600">Cargando recetas, che...</p>
 					</div>
 				)}
 
 				{error && (
 					<div className="text-center py-12">
-						<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
-							{error}
+						<div className="bg-red-50 border border-red-200 rounded-lg p-4">
+							<p className="text-red-800">{error}</p>
 						</div>
 					</div>
 				)}
@@ -114,47 +137,36 @@ const RecipesPage = () => {
 						{/* Contador de resultados */}
 						<div className="mb-6">
 							<p className="text-gray-600">
-								{filteredRecipes.length === 1 
-									? 'Se encontró 1 receta' 
-									: `Se encontraron ${filteredRecipes.length} recetas`
-								}
+								{filteredRecipes.length} {filteredRecipes.length === 1 ? 'receta encontrada' : 'recetas encontradas'}
 							</p>
 						</div>
 
 						{/* Grid de recetas */}
 						{filteredRecipes.length > 0 ? (
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 								{filteredRecipes.map((recipe) => (
 									<RecipeCard key={recipe.id} recipe={recipe} />
 								))}
 							</div>
 						) : (
 							<div className="text-center py-12">
-								<div className="bg-gray-100 rounded-lg p-8">
-									<p className="text-gray-600 text-lg">
-										No se encontraron recetas que coincidan con tu búsqueda.
-									</p>
-									<button 
-										onClick={() => {
-											setSearchTerm('')
-											setDifficultyFilter('')
-										}}
-										className="mt-4 bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition-colors"
-									>
-										Limpiar filtros
-									</button>
+								<div className="bg-gray-50 border border-gray-200 rounded-lg p-8">
+									<p className="text-gray-600 text-lg">No se encontraron recetas que coincidan con tu búsqueda, che.</p>
+									<p className="text-gray-500 mt-2">Probá con otros términos o filtros.</p>
 								</div>
 							</div>
 						)}
 					</>
 				)}
 			</div>
-			
-			{/* Formulario de agregar receta */}
-			<AddRecipeForm 
-				isOpen={showAddRecipeForm} 
-				onClose={() => setShowAddRecipeForm(false)} 
-			/>
+
+			{/* Modal de agregar receta */}
+			{showAddRecipeForm && (
+				<AddRecipeForm 
+					isOpen={showAddRecipeForm} 
+					onClose={handleCloseAddRecipe} 
+				/>
+			)}
 		</div>
 	)
 }

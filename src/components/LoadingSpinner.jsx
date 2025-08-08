@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-const LoadingSpinner = ({ message = "Cargando..." }) => {
+const LoadingSpinner = ({ message = "Cargando, che..." }) => {
 	return (
 		<div className="min-h-screen bg-gray-50 flex items-center justify-center">
 			<div className="text-center">

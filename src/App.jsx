@@ -1,3 +1,10 @@
+/**
+ * 🍳 Sazonea - Aplicación de Recetas Argentinas
+ * Copyright (c) 2024 Matias Rocha
+ * https://github.com/MatiasRocha92/recetas
+ * Licencia MIT - Ver LICENSE para más detalles
+ */
+
 import React, { Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'

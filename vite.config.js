@@ -1,3 +1,10 @@
+/**
+ * ⚡ Vite Configuration
+ * Copyright (c) 2024 Matias Rocha
+ * https://github.com/MatiasRocha92/recetas
+ * Licencia MIT - Ver LICENSE para más detalles
+ */
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 

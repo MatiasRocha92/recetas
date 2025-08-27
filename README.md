@@ -160,6 +160,8 @@ src/
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
 
+**📖 [Guía completa de Copyright y Uso](COPYRIGHT.md)** - Instrucciones detalladas sobre cómo usar este código
+
 **¿Qué significa esto?**
 - ✅ **Puedes usar** este código libremente
 - ✅ **Puedes modificar** y adaptar el código
@@ -185,4 +187,33 @@ Si tienes problemas:
 
 ---
 
-**Esta página fue creada con fines de práctica, la misma la dejo para que la puedan usar libremente. Atte. Matias Rocha**
+## 📝 Copyright y Uso
+
+**Este proyecto fue creado con fines de práctica y aprendizaje.**
+
+### **¿Puedes usar este código?**
+✅ **SÍ, absolutamente!** Este proyecto está bajo licencia MIT, lo que significa que puedes:
+
+- 🚀 **Usar** el código en tus propios proyectos
+- 🔧 **Modificar** y adaptar a tus necesidades
+- 📱 **Distribuir** copias del código
+- 💼 **Usar comercialmente** en aplicaciones de pago
+- 🎓 **Aprender** de la implementación
+
+### **¿Qué debes hacer?**
+📋 **Solo mantener esta nota de copyright en tu código:**
+
+```javascript
+// Copyright (c) 2024 Matias Rocha
+// Este código está basado en: https://github.com/MatiasRocha92/recetas
+// Licencia MIT - Ver LICENSE para más detalles
+```
+
+### **¿Dónde agregar el copyright?**
+- 📄 **Archivos principales** (App.jsx, componentes clave)
+- 📚 **README** de tu proyecto
+- 🔗 **Enlaces** al repositorio original (opcional pero apreciado)
+
+---
+
+**Desarrollado con ❤️ por Matias Rocha - [GitHub](https://github.com/MatiasRocha92)**

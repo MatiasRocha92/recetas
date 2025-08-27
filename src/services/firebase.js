@@ -1,3 +1,10 @@
+/**
+ * 🔥 Firebase Configuration Service
+ * Copyright (c) 2024 Matias Rocha
+ * https://github.com/MatiasRocha92/recetas
+ * Licencia MIT - Ver LICENSE para más detalles
+ */
+
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'

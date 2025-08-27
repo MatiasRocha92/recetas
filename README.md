@@ -1,5 +1,7 @@
 # 🍳 RecetasApp - Aplicación de Recetas
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Una aplicación web moderna para descubrir, guardar y compartir recetas criollas argentinas. Desarrollada con React, Vite, Firebase y optimizada para rendimiento.
 
 ## ✨ Características
@@ -154,6 +156,17 @@ src/
 └── config/             # Configuraciones
 ```
 
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+
+**¿Qué significa esto?**
+- ✅ **Puedes usar** este código libremente
+- ✅ **Puedes modificar** y adaptar el código
+- ✅ **Puedes distribuir** copias
+- ✅ **Puedes usar comercialmente**
+- 📝 **Solo debes** incluir la nota de copyright original
+
 ## 🤝 Contribuir
 
 1. Fork el proyecto
@@ -172,4 +185,4 @@ Si tienes problemas:
 
 ---
 
-**Esta pagina fue creada con fines de practica, la misma la dejo para que la puedan usar libremente. Atte. Matias Rocha**
+**Esta página fue creada con fines de práctica, la misma la dejo para que la puedan usar libremente. Atte. Matias Rocha**

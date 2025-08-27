@@ -1,4 +1,4 @@
-# 🍳 RecetasApp - Aplicación de Recetas Argentinas
+# 🍳 RecetasApp - Aplicación de Recetas
 
 Una aplicación web moderna para descubrir, guardar y compartir recetas criollas argentinas. Desarrollada con React, Vite, Firebase y optimizada para rendimiento.
 
@@ -84,8 +84,7 @@ VITE_FIREBASE_APP_ID=1:123456789:web:abcdef123456
 - 🗜️ **Compresión** con Terser
 
 ### **Experiencia de Usuario**
-- 🇦🇷 **Expresiones argentinas** auténticas
-- 😊 **Tono amigable** con "che"
+- 😊 **Tono amigable**
 - 🎭 **Personalidad única** de la aplicación
 - 🌟 **Navegación fluida** y responsive
 
@@ -163,10 +162,6 @@ src/
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
-
 ## 🆘 Soporte
 
 Si tienes problemas:
@@ -177,4 +172,4 @@ Si tienes problemas:
 
 ---
 
-**¡Disfruta cocinando recetas criollas argentinas!** 🇦🇷🍳
+**Esta pagina fue creada con fines de practica, la misma la dejo para que la puedan usar libremente. Atte. Matias Rocha**

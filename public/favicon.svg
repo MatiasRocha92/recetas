@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Fondo circular naranja -->
+  <circle cx="16" cy="16" r="15" fill="#f97316"/>
+  
+  <!-- Sartén negra -->
+  <ellipse cx="16" cy="18" rx="7" ry="2.5" fill="#374151"/>
+  
+  <!-- Mango -->
+  <rect x="23" y="16" width="3" height="1" fill="#374151"/>
+  
+  <!-- 3 huevos -->
+  <ellipse cx="14" cy="17" rx="1.2" ry="1.5" fill="#fef3c7"/>
+  <ellipse cx="18" cy="17" rx="1.2" ry="1.5" fill="#fef3c7"/>
+  <ellipse cx="16" cy="19" rx="1.2" ry="1.5" fill="#fef3c7"/>
+  
+  <!-- Yemas -->
+  <circle cx="14" cy="17" r="0.6" fill="#fbbf24"/>
+  <circle cx="18" cy="17" r="0.6" fill="#fbbf24"/>
+  <circle cx="16" cy="19" r="0.6" fill="#fbbf24"/>
+</svg>
